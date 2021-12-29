@@ -7,6 +7,10 @@
     <meta name="description" content="Coffee Shop">
     <meta name="keywords" content="coffee, food">
     <title>Coffee Shop</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="./img/favicon_io/site.webmanifest">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,17 +34,18 @@
         <div class="header" id="header">
             <div id="header-text">
                 <i class="fas fa-coffee" id="header-icon"></i>
-                <h1 class="title">Cafetería</h1>
+                <h1 class="title">Coffee Shop</h1>
             </div>
         </div>
     </head>
 
+    <section id="greeting" class="greeting"></section>
     <main>
         <div class="principal-buttons">
-            <div class="btn btn-light principal-btn title" id="coffee-btn">Cafés</div>
-            <div class="btn btn-light principal-btn title" id="juice-btn">Jugos</div>
-            <div class="btn btn-light principal-btn title" id="sweet-btn">Dulce</div>
-            <div class="btn btn-light principal-btn title" id="salty-btn">Salado</div>
+            <div class="btn principal-btn title" id="coffee-btn">Cafés</div>
+            <div class="btn principal-btn title" id="juice-btn">Jugos</div>
+            <div class="btn principal-btn title" id="sweet-btn">Dulce</div>
+            <div class="btn principal-btn title" id="salty-btn">Salado</div>
         </div>
         <div class="menu">
             <div id="coffee-menu" class="coffee-menu"></div>
@@ -50,7 +55,7 @@
         </div>
     </main>
 
-    <button id="btnTop" class="btn btnTop"><i class="fas fa-chevron-up btnTop-icon"></i></button>
+    <button id="btnTop" class="btn btnTop"><i class="fas fa-chevron-up btnTop-icon animate__animated animate__fadeInUp animate__infinite infinite"></i></button>
 
     <footer>
         <p class="footer-text-small"><i class="far fa-copyright"></i> Copyright 2022 | VN</p>

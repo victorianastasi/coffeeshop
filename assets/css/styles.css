@@ -56,9 +56,19 @@ body{
         background-size: 150%;
     }
 }
+.greeting{
+    margin: 2rem 0;
+    text-align: center;
+}
+.greeting p{
+    margin: 0;
+}
+.greeting i{
+    font-size: 3rem;
+}
 .footer-text-small{
     font-size: 0.7rem;
-    margin-top: 3rem;
+    margin-top: 4rem;
     text-align: center;
 }
 .principal-buttons{
@@ -67,12 +77,32 @@ body{
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    padding: 1rem 0;
 }
 .principal-btn{
     flex-basis: 22%;
     margin: 1rem 0.25rem;
     box-shadow: 5px 5px 5px rgba(70, 70, 70, 0.2);
     font-weight: 500;
+    border: none;
+    background-color: rgb(39, 40, 46);
+    color: rgb(255, 255, 255);
+}
+.btn-coffee-active{
+    color: rgb(39, 40, 46);
+    background-color: rgb(209,173,146);
+}
+.btn-juice-active{
+    color: rgb(39, 40, 46);
+    background-color: rgb(245, 245, 196);
+}
+.btn-sweet-active{
+    color: rgb(39, 40, 46);
+    background-color: rgb(239, 190, 192);
+}
+.btn-salty-active{
+    color: rgb(39, 40, 46);
+    background-color: rgb(193, 223, 192);
 }
 .menu-items{
     background-color: white;
@@ -127,7 +157,7 @@ body{
     color: rgb(157,208,67);
     font-size: 0.9rem;
 }
-.juice-menu, .sweet-menu, .salty-menu{
+.coffee-menu, .juice-menu, .sweet-menu, .salty-menu{
     display: none;
 }
 .show{
