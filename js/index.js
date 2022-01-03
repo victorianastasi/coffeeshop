@@ -45,7 +45,7 @@ window.addEventListener('load', function() {
         {nombre: 'Cheesecake de arándanos', imagen: '../img/cheesecakeblue.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 280},
         {nombre: 'Chocotorta', imagen: '../img/chocotorta.png', tacc: '', vegan: '', precio: 250},
         {nombre: 'Apple Pie', imagen: '../img/apple.png', tacc: '', vegan: '', precio: 230},
-        {nombre: 'Cupcakes', imagen: '../img/cupcakes.png', tacc: '', vegan: '', precio: 180},
+        {nombre: 'Cupcake', imagen: '../img/cupcakes.png', tacc: '', vegan: '', precio: 180},
         {nombre: 'Donuts', imagen: '../img/donuts.png', tacc: '', vegan: '', precio: 180},
         {nombre: 'Cookies', imagen: '../img/cookies.png', tacc: '', vegan: '', precio: 220},
         {nombre: 'Hotcakes', imagen: '../img/hotcakes.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 210},
@@ -232,7 +232,12 @@ window.addEventListener('load', function() {
 
     function createOrder(){
         let orderList = `
-        <h4>Tu Pedido:</h4>
+            <h4>Tu Pedido:</h4>
+            <div class="order-text" id="order-text">
+                <p class="order-text-name">Servicio de Mesa</p>
+                <p class="order-text-price">$ 80</p>
+                <p class="order-text-cancel"></p>
+            </div>
         `;
         let total = 0;
         for(let i = 0; i < order.length; i++){
@@ -251,11 +256,26 @@ window.addEventListener('load', function() {
         document.getElementById("order-list").innerHTML = orderList;
         document.getElementById("order-total").innerHTML = 
         `
-            <p class="order-total">Total: $ ${total}</p>
+            <p class="order-total">Total: $ ${total+80}</p>
         `;
-
+       
         removeItems();
         
+
+        console.log(order)
+        let cantidad = 1;
+        let orderWhatsapp = ``;
+        for (let i = 0; i< order.length; i++){
+            orderWhatsapp += `${cantidad} ${order[i].nombre}, ` ;
+            console.log(orderWhatsapp)
+           /*  let orderstri = orderWhat.trim().replace(/ /g, "%20");
+            console.log(orderstri) */
+            
+        }
+        
+        document.getElementById("order-whatsapp").innerHTML = `
+        <a class="wapp" href="https://api.whatsapp.com/send?phone=5491163501252&text=¡Hola! Me gustaría pedir: ${orderWhatsapp} Total: $ ${total+80}. Gracias" target="_blank"><i class="fab fa-whatsapp"></i> Enviar pedido por Whatsapp</a>
+        `;
     };
 
     document.getElementById("icon-shop").addEventListener(('click'), ()=>{
@@ -279,5 +299,6 @@ window.addEventListener('load', function() {
         };
     });
     
+
 
 });
