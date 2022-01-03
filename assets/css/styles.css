@@ -31,9 +31,39 @@ body{
 .btnTop:visited{
     background-color: rgba(204,174,189, 0.8);
 }
+.text-shop{
+    text-align: right;
+    background-color: rgb(39, 40, 46);
+    color: white;
+    margin: 0;
+    position: relative;
+    background-color: chocolate;
+}
+.icon-shop{
+    font-size: 1.75rem;
+    padding: 1rem 0.25rem 1.5rem 1rem;
+    position: absolute;
+    top: 0;
+    right: 30px;
+}
+.icon-shop-count{
+    position: absolute;
+    top: 5px;
+    right: 18px;
+    background-color: rgba(248, 206, 236, 0.8);
+    display: inline-grid;
+    place-content: center;
+    width: 25px;
+    height: 25px;
+    font-family: 'Ubuntu', sans-serif;
+    border: 2px solid rgba(248, 206, 236, 0.8);
+    border-radius: 50%;
+    font-size: 0.9rem;
+    color: rgb(39, 40, 46);
+}
 .header{
     text-align: center;
-    height: 300px;
+    height: 310px;
     background-color: rgb(39, 40, 46);
     color: white;
     display: grid;
@@ -44,7 +74,7 @@ body{
     color: transparent;
     /* background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(235, 130, 235), rgb(216, 191, 216));
     background-image: linear-gradient(to right, #78ffd6, #a8ff78); */
-    background-image: linear-gradient(to right, #a88beb, #f8ceec, white);
+    background-image: linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255));
     background-clip: text;
     -webkit-background-clip: text;
     background-size: 300%;
@@ -66,10 +96,11 @@ body{
 .greeting i{
     font-size: 3rem;
 }
+
 .footer-text-small{
+    text-align: center;
     font-size: 0.7rem;
     margin-top: 4rem;
-    text-align: center;
 }
 .principal-buttons{
     display: flex;
@@ -88,21 +119,37 @@ body{
     background-color: rgb(39, 40, 46);
     color: rgb(255, 255, 255);
 }
+.principal-btn:hover{
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 5px 10px rgba(70, 70, 70, 0.5);
+}
 .btn-coffee-active{
     color: rgb(39, 40, 46);
     background-color: rgb(209,173,146);
+}
+.btn-coffee-active:hover{
+    color: rgb(39, 40, 46);
 }
 .btn-juice-active{
     color: rgb(39, 40, 46);
     background-color: rgb(245, 245, 196);
 }
+.btn-juice-active:hover{
+    color: rgb(39, 40, 46);
+}
 .btn-sweet-active{
     color: rgb(39, 40, 46);
     background-color: rgb(239, 190, 192);
 }
+.btn-sweet-active:hover{
+    color: rgb(39, 40, 46);
+}
 .btn-salty-active{
     color: rgb(39, 40, 46);
     background-color: rgb(193, 223, 192);
+}
+.btn-salty-active:hover{
+    color: rgb(39, 40, 46);
 }
 .menu-items{
     background-color: white;
@@ -118,7 +165,7 @@ body{
     margin-bottom: 0.25rem;
 }
 .item-img{
-    flex-basis: 25%;
+    flex-basis: 28%;
     height: inherit;
 }
 .item-img img{
@@ -127,7 +174,7 @@ body{
     opacity: 0.9;
 }
 .item-text{
-    flex-basis: 60%;
+    flex-basis: 57%;
     padding-left: 1.5rem;
 }
 .item-text p:nth-child(1){
@@ -147,9 +194,6 @@ body{
     width: 17%;
     margin: 0 0.25rem;
 }
-.vegan {
-    border-radius: 30px;
-}
 .icon-vegan{
     border: 3px solid rgb(157,208,67);
     border-radius: 50%;
@@ -159,6 +203,78 @@ body{
 }
 .coffee-menu, .juice-menu, .sweet-menu, .salty-menu{
     display: none;
+}
+
+.order-section{
+    display: none;
+    margin: 1rem 0;
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+}
+.order-text{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 0 0.5rem;
+    background-color: rgba(164, 180, 206, 0.2);
+    
+}
+.order-text-name{
+    flex-basis: 50%;
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+    text-align: left;
+}
+.order-text-price{
+    flex-basis: 30%;
+    text-align: center;
+    margin: 0.75rem 0;
+}
+.order-text-cancel{
+    flex-basis: 20%;
+    text-align: center;
+    margin: 0.75rem 0;
+    font-size: 1.5rem;
+    color: rgb(133, 159, 201);
+}
+.empty-order{
+    display: none;
+}
+.notification{
+    display: none;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.notification p{
+    background-color: rgba(157,208,67, 0.8);
+    margin: 0;
+    padding: 1.5rem 0;
+}
+.notification i{
+    font-size: 1.5rem;
+}
+.no-order{
+    display: none;
+    text-align: center;
+    padding: 2.5rem;
+    background-color: white;
+    color: rgb(90, 196, 193);
+    font: 1.1rem/1.2 'Ubuntu', sans-serif;
+}
+.no-order i{
+    font-size: 1.5rem;
+}
+.order-total{
+    background-color: rgb(39, 40, 46);
+    margin: 1rem 0;
+    padding: 1rem;
+    color: rgb(201, 210, 224);
+    letter-spacing: 2px;
 }
 .show{
     display: block;
@@ -170,6 +286,22 @@ body{
     main{
         width: 50%;
         margin: 0 auto;
+    }
+    .menu-items{
+        height: 120px;
+    }
+    .img-icon {
+        width: 12%;
+    }
+    .icon-vegan{
+        padding: 0.3rem;
+        font-size: 1.1rem;
+    }
+    .item-img{
+        flex-basis: 23%;
+    }
+    .item-add{
+        flex-basis: 17%;
     }
 }
 
