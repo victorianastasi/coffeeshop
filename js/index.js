@@ -20,46 +20,46 @@ window.addEventListener('load', function() {
     });
 
     let coffeeList = [
-        {nombre: 'Café Espresso', imagen: '../img/espresso.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 180},
-        {nombre: 'Café Americano', imagen: '../img/americano.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 200},
-        {nombre: 'Cortado', imagen: '../img/cortado.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 200},
-        {nombre: 'Café con leche', imagen: '../img/cafeconleche.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220},
-        {nombre: 'Café Latte', imagen: '../img/latte.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220},
-        {nombre: 'Café Mocha', imagen: '../img/mocha.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 250},
-        {nombre: 'Macciato', imagen: '../img/macciato.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220},
-        {nombre: 'Caramel Macciato', imagen: '../img/caramel.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220},
-        {nombre: 'Capuccino', imagen: '../img/capuccino.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220},
-        {nombre: 'Flat White', imagen: '../img/flat.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220},
-        {nombre: 'Café Irlandes', imagen: '../img/irlandes.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 260},
-        {nombre: 'Café Amaretto', imagen: '../img/amaretto.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 260}        
+        {nombre: 'Café Espresso', imagen: '../img/espresso.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 180, cantidad: 1},
+        {nombre: 'Café Americano', imagen: '../img/americano.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 200, cantidad: 1},
+        {nombre: 'Cortado', imagen: '../img/cortado.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 200, cantidad: 1},
+        {nombre: 'Café con leche', imagen: '../img/cafeconleche.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220, cantidad: 1},
+        {nombre: 'Café Latte', imagen: '../img/latte.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220, cantidad: 1},
+        {nombre: 'Café Mocha', imagen: '../img/mocha.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 250, cantidad: 1},
+        {nombre: 'Macciato', imagen: '../img/macciato.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220, cantidad: 1},
+        {nombre: 'Caramel Macciato', imagen: '../img/caramel.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220, cantidad: 1},
+        {nombre: 'Capuccino', imagen: '../img/capuccino.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220, cantidad: 1},
+        {nombre: 'Flat White', imagen: '../img/flat.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220, cantidad: 1},
+        {nombre: 'Café Irlandes', imagen: '../img/irlandes.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 260, cantidad: 1},
+        {nombre: 'Café Amaretto', imagen: '../img/amaretto.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 260, cantidad: 1}        
     ];
     let juiceList = [
-        {nombre: 'Limonada', imagen: '../img/limon.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 150},
-        {nombre: 'Jugo de Naranja', imagen: '../img/naranja.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 150},
-        {nombre: 'Jugo de Manzana', imagen: '../img/manzana.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 160},
-        {nombre: 'Licuado de Banana', imagen: '../img/banana.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 180},
-        {nombre: 'Jugo de Durazno', imagen: '../img/durazno.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 150}
+        {nombre: 'Limonada', imagen: '../img/limon.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 150, cantidad: 1},
+        {nombre: 'Jugo de Naranja', imagen: '../img/naranja.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 150, cantidad: 1},
+        {nombre: 'Jugo de Manzana', imagen: '../img/manzana.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 160, cantidad: 1},
+        {nombre: 'Licuado de Banana', imagen: '../img/banana.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 180, cantidad: 1},
+        {nombre: 'Jugo de Durazno', imagen: '../img/durazno.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 150, cantidad: 1}
     ];
     let sweetList = [
-        {nombre: 'Cheesecake', imagen: '../img/cheesecake.png', tacc: '', vegan: '', precio: 280},
-        {nombre: 'Cheesecake de arándanos', imagen: '../img/cheesecakeblue.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 280},
-        {nombre: 'Chocotorta', imagen: '../img/chocotorta.png', tacc: '', vegan: '', precio: 250},
-        {nombre: 'Apple Pie', imagen: '../img/apple.png', tacc: '', vegan: '', precio: 230},
-        {nombre: 'Cupcake', imagen: '../img/cupcakes.png', tacc: '', vegan: '', precio: 180},
-        {nombre: 'Donuts', imagen: '../img/donuts.png', tacc: '', vegan: '', precio: 180},
-        {nombre: 'Cookies', imagen: '../img/cookies.png', tacc: '', vegan: '', precio: 220},
-        {nombre: 'Hotcakes', imagen: '../img/hotcakes.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 210},
-        {nombre: 'Medialunas', imagen: '../img/medialunas.png', tacc: '', vegan: '', precio: 150},
-        {nombre: 'Tostadas con mermelada y queso blanco', imagen: '../img/toast.png', tacc: '', vegan: '', precio: 180},
-        {nombre: 'Ensalada de frutas', imagen: '../img/frutas.jpg', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 200}        
+        {nombre: 'Cheesecake', imagen: '../img/cheesecake.png', tacc: '', vegan: '', precio: 280, cantidad: 1},
+        {nombre: 'Cheesecake de arándanos', imagen: '../img/cheesecakeblue.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 280, cantidad: 1},
+        {nombre: 'Chocotorta', imagen: '../img/chocotorta.png', tacc: '', vegan: '', precio: 250, cantidad: 1},
+        {nombre: 'Apple Pie', imagen: '../img/apple.png', tacc: '', vegan: '', precio: 230, cantidad: 1},
+        {nombre: 'Cupcake', imagen: '../img/cupcakes.png', tacc: '', vegan: '', precio: 180, cantidad: 1},
+        {nombre: 'Donuts', imagen: '../img/donuts.png', tacc: '', vegan: '', precio: 180, cantidad: 1},
+        {nombre: 'Cookies', imagen: '../img/cookies.png', tacc: '', vegan: '', precio: 220, cantidad: 1},
+        {nombre: 'Hotcakes', imagen: '../img/hotcakes.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 210, cantidad: 1},
+        {nombre: 'Medialunas', imagen: '../img/medialunas.png', tacc: '', vegan: '', precio: 150, cantidad: 1},
+        {nombre: 'Tostadas con mermelada y queso blanco', imagen: '../img/toast.png', tacc: '', vegan: '', precio: 180, cantidad: 1},
+        {nombre: 'Ensalada de frutas', imagen: '../img/frutas.jpg', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 200, cantidad: 1}        
     ];
     let saltyList = [
-        {nombre: 'Tostado de jamón y queso', imagen: '../img/sandwich.png', tacc: '', vegan: '', precio: 250},
-        {nombre: 'Panini de pollo y vegetales', imagen: '../img/sandwich2.png', tacc: '', vegan: '', precio: 270},
-        {nombre: 'Panini vegetariano', imagen: '../img/sandwich3.png', tacc: '', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 250},
-        {nombre: 'Tostada con guacamole', imagen: '../img/tavocado.jpg', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 230},
-        {nombre: 'Huevos revueltos', imagen: '../img/huevos.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 200},
-        {nombre: 'Ensalada', imagen: '../img/salad.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 230}
+        {nombre: 'Tostado de jamón y queso', imagen: '../img/sandwich.png', tacc: '', vegan: '', precio: 250, cantidad: 1},
+        {nombre: 'Panini de pollo y vegetales', imagen: '../img/sandwich2.png', tacc: '', vegan: '', precio: 270, cantidad: 1},
+        {nombre: 'Panini vegetariano', imagen: '../img/sandwich3.png', tacc: '', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 250, cantidad: 1},
+        {nombre: 'Tostada con guacamole', imagen: '../img/tavocado.jpg', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 230, cantidad: 1},
+        {nombre: 'Huevos revueltos', imagen: '../img/huevos.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 200, cantidad: 1},
+        {nombre: 'Ensalada', imagen: '../img/salad.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 230, cantidad: 1}
     ];
 
     const greeting = () => {
@@ -230,26 +230,64 @@ window.addEventListener('load', function() {
         }
     }
 
+    const add = () => {
+        for (let i = 0; i < order.length; i++){
+            document.getElementById(`plus${i}`).addEventListener('click', ()=>{
+                if (order[i].cantidad < 10){
+                    order[i].cantidad += 1;
+                    
+                    createOrder();
+                }else{
+                    swal("Oops...", "No se pueden agregar mas unidades del producto", "warning");
+                };
+                
+            });
+        };
+    };
+
+    const minus = () => {
+        for (let i = 0; i < order.length; i++){
+            document.getElementById(`less${i}`).addEventListener('click', ()=>{
+                if (order[i].cantidad > 1){
+                    order[i].cantidad -= 1;
+                    
+                    createOrder();
+                }else{
+                    swal("Oops...", "La cantidad no puede ser menor a 1", "warning");
+                };
+                
+            });
+        };
+    };
+    
     function createOrder(){
         let orderList = `
             <h4>Tu Pedido:</h4>
             <div class="order-text" id="order-text">
+                <p class="order-text-cantidad"></p>
                 <p class="order-text-name">Servicio de Mesa</p>
                 <p class="order-text-price">$ 80</p>
                 <p class="order-text-cancel"></p>
             </div>
         `;
         let total = 0;
+        
         for(let i = 0; i < order.length; i++){
+            let price = order[i].precio * order[i].cantidad;
             orderList += `
                 <div class="order-text" id="order-text">
+                    <p class="order-text-cantidad">
+                        <span id="plus${i}" class="quantity-icon"><i class="fas fa-caret-up"></i></span> 
+                        <span class="quantity"> ${order[i].cantidad} </span>
+                        <span id="less${i}" class="quantity-icon"><i class="fas fa-caret-down"></i></span>
+                    </p>
                     <p class="order-text-name">${order[i].nombre}</p>
-                    <p class="order-text-price">$ ${order[i].precio}</p>
+                    <p class="order-text-price">$ ${price}</p>
                     <p class="order-text-cancel" id="cancel${i}"><i class="far fa-times-circle"></i></p>
                 </div>
             `;
-            total += order[i].precio;
-
+            total += price;
+            
         };
         
         document.getElementById("order-section").style.display = "block";
@@ -261,23 +299,20 @@ window.addEventListener('load', function() {
        
         removeItems();
         
-
-        console.log(order)
-        let cantidad = 1;
+        add();
+        minus();
+        
         let orderWhatsapp = ``;
         for (let i = 0; i< order.length; i++){
-            orderWhatsapp += `${cantidad} ${order[i].nombre}, ` ;
-            console.log(orderWhatsapp)
-           /*  let orderstri = orderWhat.trim().replace(/ /g, "%20");
-            console.log(orderstri) */
-            
+            orderWhatsapp += `${order[i].cantidad} ${order[i].nombre}, ` ;
         }
         
         document.getElementById("order-whatsapp").innerHTML = `
-        <a class="wapp" href="https://api.whatsapp.com/send?phone=5491163501252&text=¡Hola! Me gustaría pedir: ${orderWhatsapp} Total: $ ${total+80}. Gracias" target="_blank"><i class="fab fa-whatsapp"></i> Enviar pedido por Whatsapp</a>
+        <a class="wapp" href="https://api.whatsapp.com/send?phone=5491163501252&text=*¡Hola Coffee Shop!* Me gustaría pedir: ${orderWhatsapp} Total: $ ${total+80}. Gracias" target="_blank"><i class="fab fa-whatsapp"></i> Enviar pedido por Whatsapp</a>
         `;
     };
 
+    
     document.getElementById("icon-shop").addEventListener(('click'), ()=>{
         if(count == 0){
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
@@ -295,10 +330,8 @@ window.addEventListener('load', function() {
             document.getElementById("salty-menu").classList.remove("show");
             
             createOrder();
-
         };
     });
     
-
 
 });
