@@ -31,20 +31,55 @@ body{
 .btnTop:visited{
     background-color: rgba(204,174,189, 0.8);
 }
+header{
+    background-color: rgb(39, 40, 46);
+}
+.head-btn{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(39, 40, 46);
+    position: relative;
+}
+.search-box{
+    flex-basis: 80%;
+    margin: 0;
+    height: 33px;
+}
+.search-icon{
+    font-size: 1.75rem;
+    padding: 0 0.25rem 0 1rem;
+    color: white;
+    display: inline-block;
+}
+.search-input{
+    display: none;
+    border: 2px solid rgb(248, 206, 236);
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 33px;
+    border-radius: 5px;
+    color: white;
+    --animate-duration: 0.3s;
+}
+.input-animation-in{
+    animation-name: fadeInLeft;
+}
+.input-animation-out{
+    animation-name: fadeOutLeft;
+}
+.search-input:focus-visible{
+    outline:rgb(248, 206, 236) auto 2px;
+}
 .text-shop{
     text-align: right;
-    background-color: rgb(39, 40, 46);
-    color: white;
     margin: 0;
-    position: relative;
-    background-color: chocolate;
+    flex-basis: 30%;
 }
 .icon-shop{
     font-size: 1.75rem;
-    padding: 1rem 0.25rem 1.5rem 1rem;
-    position: absolute;
-    top: 0;
-    right: 30px;
+    padding: 1rem 2rem 1rem 1rem;
+    color: white;
 }
 .icon-shop-count{
     position: absolute;
@@ -63,17 +98,16 @@ body{
 }
 .header{
     text-align: center;
-    height: 310px;
+    height: 280px;
     background-color: rgb(39, 40, 46);
     color: white;
     display: grid;
     place-content: center;
+    padding-bottom: 2rem;
 }
 .header i{
     font-size: 8rem;
     color: transparent;
-    /* background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(235, 130, 235), rgb(216, 191, 216));
-    background-image: linear-gradient(to right, #78ffd6, #a8ff78); */
     background-image: linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255));
     background-clip: text;
     -webkit-background-clip: text;
@@ -96,7 +130,6 @@ body{
 .greeting i{
     font-size: 3rem;
 }
-
 .footer-text-small{
     text-align: center;
     font-size: 0.7rem;
@@ -201,7 +234,7 @@ body{
     color: rgb(157,208,67);
     font-size: 0.9rem;
 }
-.coffee-menu, .juice-menu, .sweet-menu, .salty-menu{
+.menu{
     display: none;
 }
 .order-section{
@@ -218,6 +251,7 @@ body{
     margin: 1rem 0;
     padding: 0.5rem;
     background-color: rgba(255, 255, 255, 0.8); 
+    box-shadow: 5px 5px 5px rgb(0,0,0,0.15);
 }
 .order-text p{
     margin: 0;
@@ -241,6 +275,7 @@ body{
     margin: 0;
     padding: 0;
     line-height: 4px;
+    color: rgb(87, 90, 95);
 }
 .order-text-price{
     flex-basis: 20%;
@@ -250,7 +285,7 @@ body{
     flex-basis: 15%;
     text-align: center;
     font-size: 1.7rem;
-    color: rgb(133, 159, 201);
+    color: rgb(247,135,138);
 }
 .empty-order{
     display: none;
@@ -271,41 +306,80 @@ body{
 .notification i{
     font-size: 1.5rem;
 }
-.no-order{
-    display: none;
+.box-notification{
     text-align: center;
     padding: 2.5rem;
     background-color: white;
     color: rgb(90, 196, 193);
     font: 1.1rem/1.2 'Ubuntu', sans-serif;
+    box-shadow: inset 0 0 15px rgba(39, 85, 83, 0.8);
+    font-weight: 500;
+}
+.no-order{
+    display: none;
 }
 .no-order i{
     font-size: 1.5rem;
 }
 .order-total{
     letter-spacing: 2px;
-    background-color: rgba(164, 180, 206, 0.2);
+    background-color: rgb(87, 90, 95);
     margin: 1rem 0;
     padding: 1rem;
-    color: rgb(39, 40, 46);
-    border-top: 2px solid rgb(133, 159, 201);
-    border-bottom: 2px solid rgb(133, 159, 201);
+    color: white;
+}
+.order-buttons{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.order-buttons div{
+    flex-basis: 45%;
+    text-align: center;
+}
+.order-btn{
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    
+    height: 66px;
+}
+.order-btn i{
+    font-size: 1.4rem;
+}
+.delete{
+    background-color: rgba(66, 145, 142, 0.9);
+    box-shadow: 5px 5px 5px rgba(39, 85, 83, 0.8);
+    color: white;
+}
+.delete i{
+    display: block;
 }
 .wapp{
     display: inline-block;
-    background-color: rgb(39,212,103);
     text-decoration: none;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 10px;
-    color: white;
+    background-color: rgb(39,212,103);
     box-shadow: 5px 5px 5px rgb(8,94,86);
+    color: white;
 }
 .wapp:visited, .wapp:link{
     color: white;
 }
-.wapp i{
-    font-size: 1.4rem;
+.no-search-result{
+    display: none;
+}
+.search-result-list{
+    padding: 1.5rem;
+    box-shadow: none;
+    background-image: linear-gradient(to bottom, rgba(66, 145, 142, 0.5), rgba(255, 255, 255, 0.25));
+    background-size: 150%;
+    color: rgb(70, 70, 70);
+}
+.search-result i{
+    display: block;
+    font-size: 1.75rem;
+    padding-top: 1rem;
 }
 .show{
     display: block;
@@ -317,6 +391,13 @@ body{
     main, .order-section, .notification p{
         width: 40%;
         margin: 0 auto;
+    }
+    .head-btn{
+        width: 70%;
+        margin: 0 auto;
+    }
+    .header{
+        height: 320px;
     }
     .menu-items{
         height: 120px;
@@ -335,4 +416,3 @@ body{
         flex-basis: 17%;
     }
 }
-

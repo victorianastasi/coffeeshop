@@ -31,10 +31,17 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
-    <head>
-        <p class="text-shop">
-            <i class="fas fa-shopping-bag icon-shop" id="icon-shop"></i> <span id="icon-shop-count" class="icon-shop-count"></span>
-        </p>
+    <header>
+        <div class="head-btn">
+            <p class="search-box">
+                <i class="fas fa-search search-icon" id="search-icon"></i>
+                <input type="text" id="search-input" class="search-input animate__animated" style="display: none;">
+            </p>
+            <p class="text-shop" id="icon-shop">
+                <i class="fas fa-shopping-bag icon-shop"></i> 
+                <span id="icon-shop-count" class="icon-shop-count"></span>
+            </p>
+        </div>
         
         <div class="header" id="header">
             <div id="header-text">
@@ -42,10 +49,11 @@
                 <h1 class="title">Coffee Shop</h1>
             </div>
         </div>
-    </head>
+    </header>
 
     <section id="greeting" class="greeting"></section>
     
+    <div id="all"></div>
     <main>
         <div class="principal-buttons" id="principal-buttons">
             <div class="btn principal-btn title" id="coffee-btn">Cafés</div>
@@ -53,22 +61,22 @@
             <div class="btn principal-btn title" id="sweet-btn">Dulce</div>
             <div class="btn principal-btn title" id="salty-btn">Salado</div>
         </div>
-        <div class="menu">
-            <div id="coffee-menu" class="coffee-menu"></div>
-            <div id="juice-menu" class="juice-menu"></div>
-            <div id="sweet-menu" class="sweet-menu"></div>
-            <div id="salty-menu" class="salty-menu"></div>
-        </div>
+        <div id="no-search-result" class="no-search-result"></div>
+        <div class="menu" id="menu"></div>
+        
     </main>
 
-    <section id="no-order" class="no-order">
+    <section id="no-order" class="no-order box-notification">
         <p>Elige algo de nuestro Menú <i class="fas fa-hand-point-up"></i></p>
     </section>
     
     <section class="order-section" id="order-section">
         <div id = "order-list"></div>
         <div id = "order-total"></div>
-        <div id = "order-whatsapp"></div>
+        <div class="order-buttons">
+            <div id = "order-delete"></div>
+            <div id = "order-whatsapp"></div>
+        </div>
     </section>
 
     <button id="btnTop" class="btn btnTop"><i class="fas fa-chevron-up btnTop-icon animate__animated animate__fadeInUp animate__infinite infinite"></i></button>
