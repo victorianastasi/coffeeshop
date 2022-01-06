@@ -87,7 +87,7 @@ window.addEventListener('load', function() {
         btnSalty.classList.remove("btn-salty-active");
     };
 
-    function showLists (list){
+    function showLists (list, id){
         document.getElementById("order-section").style.display = "none";
         let acu =  ``;
         for(let i = 0; i < list.length; i++){
@@ -106,7 +106,7 @@ window.addEventListener('load', function() {
             `;
         };
 
-        document.getElementById("menu").innerHTML = acu;
+        document.getElementById(id).innerHTML = acu;
     };
 
     const notificationText = document.getElementById("notification");
@@ -114,14 +114,28 @@ window.addEventListener('load', function() {
     const notification = () => {
         notificationText.classList.add("show");
         notificationText.animate([{transform: 'translateY(75px)'}, {transform: 'translateY(0px)'}], 
-        {duration: 500});
+        {duration: 300});
         setTimeout(function(){
             notificationText.animate([{transform: 'translateY(0px)'}, {transform: 'translateY(75px)'}], 
-            {duration: 500});
-        }, 2500);
+            {duration: 300});
+        }, 1800);
         setTimeout(function(){
             notificationText.classList.remove("show");
-        }, 3000); 
+        }, 2100); 
+    };
+
+    let notificationTextWarning = document.getElementById("notification-warning");
+    const notificationWarning = () => {
+        notificationTextWarning.classList.add("show");
+        notificationTextWarning.animate([{transform: 'translateY(75px)'}, {transform: 'translateY(0px)'}], 
+        {duration: 300});
+        setTimeout(function(){
+            notificationTextWarning.animate([{transform: 'translateY(0px)'}, {transform: 'translateY(75px)'}], 
+            {duration: 300});
+        }, 1800);
+        setTimeout(function(){
+            notificationTextWarning.classList.remove("show");
+        }, 2100); 
     };
 
     let iconShopCounter = document.getElementById("icon-shop-count");
@@ -131,15 +145,30 @@ window.addEventListener('load', function() {
     iconShopCounter.innerHTML = count;
     
     function addingToOrder(list){
-        for(let i = 0; i < list.length; i++){      
+
+        for(let i = 0; i < list.length; i++){
             document.getElementById(`${list[i].type}${i}`).addEventListener('click', ()=>{
                 
-                notification();
-                order.push(list[i]);
+                let findProduct = order.find(order => order.nombre == list[i].nombre);
+                
+                let indexOrder = order.indexOf(findProduct);
 
-                count = order.length;
-                iconShopCounter.innerHTML = count;
-
+                if(findProduct != null){
+                    if(order[indexOrder].cantidad < 10){
+                        order[indexOrder].cantidad += 1;
+                        notificationTextWarning.innerHTML = `
+                        <p><i class="fas fa-exclamation"></i> Se agrego 1 unidad más de ${order[indexOrder].nombre}`;
+                        notificationWarning();
+                    }else{
+                        swal("Oops...", "No se pueden agregar mas unidades del producto", "warning");
+                    }
+                }else{
+                    notification();
+                    order.push(list[i]);
+                    count = order.length;
+                    iconShopCounter.innerHTML = count;
+                };
+ 
             });
         };
     };
@@ -165,9 +194,11 @@ window.addEventListener('load', function() {
 
 
     btnCoffee.addEventListener('click', () =>{
-        showLists(coffeeList);
+        showLists(coffeeList, "menu");
         addingToOrder(coffeeList);
         removeInputAnimation();
+        document.getElementById("header").style.display = "grid";
+        document.getElementById("search-result-list").classList.remove("show");
         document.getElementById("order-section").style.display = "none";
         document.getElementById("no-order").classList.remove("show");
         document.getElementById("no-search-result").classList.remove("show");
@@ -179,9 +210,11 @@ window.addEventListener('load', function() {
         btnCoffee.classList.add("btn-coffee-active");
     });
     btnJuice.addEventListener('click', () =>{
-        showLists(juiceList);
+        showLists(juiceList, "menu");
         addingToOrder(juiceList);
         removeInputAnimation();
+        document.getElementById("header").style.display = "grid";
+        document.getElementById("search-result-list").classList.remove("show");
         document.getElementById("order-section").style.display = "none";
         document.getElementById("no-order").classList.remove("show");
         document.getElementById("no-search-result").classList.remove("show");
@@ -193,9 +226,11 @@ window.addEventListener('load', function() {
         btnJuice.classList.add("btn-juice-active");
     });
     btnSweet.addEventListener('click', () =>{
-        showLists(sweetList);
+        showLists(sweetList, "menu");
         addingToOrder(sweetList);
         removeInputAnimation();
+        document.getElementById("header").style.display = "grid";
+        document.getElementById("search-result-list").classList.remove("show");
         document.getElementById("order-section").style.display = "none";
         document.getElementById("no-order").classList.remove("show");
         document.getElementById("no-search-result").classList.remove("show");
@@ -207,9 +242,11 @@ window.addEventListener('load', function() {
         btnSweet.classList.add("btn-sweet-active");
     });
     btnSalty.addEventListener('click', () =>{
-        showLists(saltyList);
+        showLists(saltyList, "menu");
         addingToOrder(saltyList);
         removeInputAnimation();
+        document.getElementById("header").style.display = "grid";
+        document.getElementById("search-result-list").classList.remove("show");
         document.getElementById("order-section").style.display = "none";
         document.getElementById("no-order").classList.remove("show");
         document.getElementById("no-search-result").classList.remove("show");
@@ -242,28 +279,34 @@ window.addEventListener('load', function() {
         searchResult = allProducts.filter((allProducts) => allProducts.nombre.toLowerCase().includes(searchWord.toLowerCase().trim()));
 
         document.getElementById('greeting').classList.add("hide");
-
         if(document.getElementById("search-input").value == ""){
-            document.getElementById("no-order").classList.add("show");
+            document.getElementById("no-search-result").innerHTML = `
+            <p class="search-result box-notification">Elige algo de nuestro Menú <i class="fas fa-hand-point-up"></i></p>
+                `;
+            document.getElementById("no-order").classList.remove("show");
+            document.getElementById("search-result-list").classList.remove("show");
             document.getElementById("menu").classList.remove("show");
-            document.getElementById("no-search-result").classList.remove("show");
+            document.getElementById("header").style.display = "none";
         }else{
             if(searchResult.length == 0){
-                
+                document.getElementById("header").style.display = "none";
+                document.getElementById("search-result-list").classList.remove("show");
                 document.getElementById("menu").classList.remove("show");
                 document.getElementById("no-search-result").classList.add("show");
                 document.getElementById("no-search-result").innerHTML = `
                 <p class="search-result box-notification">No se encontraron resultados a tu búsqueda <i class="far fa-sad-cry"></i></p>
                 `;
             }else{
-                document.getElementById("menu").classList.add("show");
+                document.getElementById("search-result-list").classList.add("show");
+                document.getElementById("menu").classList.remove("show");
+                document.getElementById("header").style.display = "none";
                 document.getElementById("no-search-result").classList.add("show");
                 document.getElementById("no-search-result").innerHTML = `
-                <p class="search-result-list box-notification">Resultados de tu búsqueda: </p>
+                <p class="search-result-list-text box-notification">Resultados de tu búsqueda: </p>
                 `;
                 document.getElementById("no-order").classList.remove("show");
 
-                showLists(searchResult);
+                showLists(searchResult, "search-result-list");
                 addingToOrder(searchResult);
             };
         };
@@ -386,8 +429,11 @@ window.addEventListener('load', function() {
             order = [];
             count = 0;
             iconShopCounter.innerHTML = count;
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
             document.getElementById("order-section").style.display = "none";
             document.getElementById("no-order").classList.add("show");
+            document.getElementById("no-order").style.marginBottom = "1rem";
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
         });
     };
@@ -402,12 +448,14 @@ window.addEventListener('load', function() {
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
             document.getElementById("no-order").classList.add("show");
             document.getElementById('greeting').classList.add("hide");
+            document.getElementById("header").style.display = "grid";
         }else{
             document.getElementById("header-icon").style.backgroundImage = "url('../img/bg.png')";
             document.getElementById("header-text").style.color = "rgb(255, 255, 255)";
             document.getElementById("no-order").classList.remove("show");
             document.getElementById("order-section").style.display = "block";
-                        
+            document.getElementById("search-result-list").classList.remove("show");
+            document.getElementById("header").style.display = "grid";        
             createOrder();
         };
     });
