@@ -42,7 +42,6 @@ header{
     background-color: rgb(39, 40, 46);
     position: relative;
 }
-
 .search-result-list{
     display: none;
 }
@@ -120,7 +119,7 @@ header{
     -webkit-background-clip: text;
     background-size: 300%;
     background-position: center;
-    animation: animation-icon 5s infinite alternate;
+    animation: animation-icon 3s infinite alternate;
 }
 @keyframes animation-icon {
     100%{
@@ -128,14 +127,20 @@ header{
     }
 }
 .greeting{
-    margin: 2rem 0;
+    margin: 2rem 0 0 0;
     text-align: center;
 }
 .greeting p{
     margin: 0;
 }
 .greeting i{
-    font-size: 3rem;
+    font-size: 3.5rem;
+    padding-top: 1rem;
+    color: transparent;
+    background-image: linear-gradient(to bottom, rgba(191, 171, 236, 0.9), rgba(250, 223, 242, 0.9));
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 500%;
 }
 .footer-text-small{
     text-align: center;
@@ -201,6 +206,10 @@ header{
     margin: 1.5rem 0;
     box-shadow: 5px 5px 5px rgb(0,0,0,0.15);
 }
+.menu-item-active{
+    background-color: rgba(39, 40, 46, 0.8);
+    color: rgb(245, 245, 245);
+}
 .menu-items p{
     margin-bottom: 0.25rem;
 }
@@ -212,6 +221,9 @@ header{
     width: 100%;
     height: inherit;
     opacity: 0.9;
+}
+.img-item-active{
+    filter: grayscale(0.6);
 }
 .item-text{
     flex-basis: 57%;
@@ -230,9 +242,14 @@ header{
     background-color: rgb(223, 223, 223);
     border-radius: 5px;
 }
+.item-add-icon-active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(90, 196, 193);
+}
 .img-icon{
     width: 17%;
     margin: 0 0.25rem;
+    border-radius: 20px;
 }
 .icon-vegan{
     border: 3px solid rgb(157,208,67);
@@ -299,23 +316,45 @@ header{
 }
 .notification{
     display: none;
-    width: 100%;
+    width: 330px;
     position: fixed;
-    bottom: 0;
+    top: 50px;
+    right: 0px;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
 }
 .notification p{
     background-color: rgba(39, 40, 46, 0.8);
-    color: white;
+    border-radius: 10px 0 0 10px;
+    border: 2px solid rgba(245, 245, 245, 0.8);
+    color: rgb(154, 226, 224);
     margin: 0;
-    padding: 1.5rem 0;
+    padding: 1.5rem;
 }
 .notification i{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    padding-right: 0.75rem;
 }
 .notification-warning p{
-    color: rgb(248, 222, 235);
+    color: rgb(255,193,133);
+}
+.notification-delete{
+    width: 100%;
+    display: none;
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.notification-delete p{
+    background-color: rgba(39, 40, 46, 0.8);
+    color: rgb(253, 186, 189);
+    margin: 0;
+    padding: 1.5rem;
+}
+.notification-delete i{
+    font-size: 1.7rem;
+    padding-right: 0.75rem;
 }
 .box-notification{
     text-align: center;
@@ -348,33 +387,31 @@ header{
     align-items: center;
 }
 .order-buttons div{
-    flex-basis: 45%;
+    flex-basis: 47%;
     text-align: center;
 }
 .order-btn{
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0rem;
     margin: 1rem 0;
     border-radius: 10px;
-    
+    font-size: 0.9rem;
     height: 66px;
+    width: 100%;
+    color: white;
 }
 .order-btn i{
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    display: block;
 }
 .delete{
     background-color: rgba(66, 145, 142, 0.9);
     box-shadow: 5px 5px 5px rgba(39, 85, 83, 0.8);
-    color: white;
-}
-.delete i{
-    display: block;
 }
 .wapp{
     display: inline-block;
     text-decoration: none;
     background-color: rgb(39,212,103);
     box-shadow: 5px 5px 5px rgb(8,94,86);
-    color: white;
 }
 .wapp:visited, .wapp:link{
     color: white;
@@ -402,7 +439,7 @@ header{
     display: none;
 }
 @media screen and (min-width: 992px){
-    main, .order-section, .notification p{
+    main, .order-section, .search-result-list, .box-notification, .notification-delete p{
         width: 40%;
         margin: 0 auto;
     }

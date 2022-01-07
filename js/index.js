@@ -62,6 +62,8 @@ window.addEventListener('load', function() {
         {nombre: 'Ensalada', imagen: '../img/salad.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 230, cantidad: 1, type: 'salty-menu'}
     ];
 
+    let emptyList = [];
+
     let allProducts = coffeeList.concat(juiceList).concat(sweetList).concat(saltyList);
 
     const greeting = () => {
@@ -69,7 +71,7 @@ window.addEventListener('load', function() {
         `
             <h2>Bienvenidos a Coffee Shop!!</h2>
             <p>Conocé nuestro menú</p>
-            <p><i class="fas fa-angle-double-down animate__animated animate__fadeOutDown animate__infinite infinite animate__slow"></i></p>
+            <p><i class="fas fa-angle-double-down greeting-arrow"></i></p>
         `;
     };
 
@@ -92,16 +94,16 @@ window.addEventListener('load', function() {
         let acu =  ``;
         for(let i = 0; i < list.length; i++){
             acu += `
-            <div class="menu-items" id="${list[i].type}${i}">
+            <div class="menu-items" id="item-${list[i].type}${i}">
                 <div class="item-img">
-                    <img src="${list[i].imagen}" alt="${list[i].nombre}">
+                    <img src="${list[i].imagen}" alt="${list[i].nombre}" id="img-${list[i].type}${i}">
                 </div>
                 <div class="item-text">
                     <p>${list[i].nombre}</p>
                     <p>$ ${list[i].precio}</p>
                     <p>${list[i].vegan} ${list[i].tacc}</p>
                 </div>
-                <div class="item-add" id="${list[i].type}${i}"><i class="fas fa-plus item-add-icon"></i></div>
+                <div class="item-add" id="${list[i].type}${i}"><i class="fas fa-plus item-add-icon" id ="item-add-icon${list[i].type}${i}"></i></div>
             </div>
             `;
         };
@@ -113,10 +115,10 @@ window.addEventListener('load', function() {
 
     const notification = () => {
         notificationText.classList.add("show");
-        notificationText.animate([{transform: 'translateY(75px)'}, {transform: 'translateY(0px)'}], 
+        notificationText.animate([{transform: 'translateX(330px)'}, {transform: 'translateX(0px)'}], 
         {duration: 300});
         setTimeout(function(){
-            notificationText.animate([{transform: 'translateY(0px)'}, {transform: 'translateY(75px)'}], 
+            notificationText.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(330px)'}], 
             {duration: 300});
         }, 1800);
         setTimeout(function(){
@@ -127,15 +129,29 @@ window.addEventListener('load', function() {
     let notificationTextWarning = document.getElementById("notification-warning");
     const notificationWarning = () => {
         notificationTextWarning.classList.add("show");
-        notificationTextWarning.animate([{transform: 'translateY(75px)'}, {transform: 'translateY(0px)'}], 
+        notificationTextWarning.animate([{transform: 'translateX(330px)'}, {transform: 'translateX(0px)'}], 
         {duration: 300});
         setTimeout(function(){
-            notificationTextWarning.animate([{transform: 'translateY(0px)'}, {transform: 'translateY(75px)'}], 
+            notificationTextWarning.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(330px)'}], 
             {duration: 300});
         }, 1800);
         setTimeout(function(){
             notificationTextWarning.classList.remove("show");
         }, 2100); 
+    };
+
+    let notificationTextDelete = document.getElementById("notification-delete");
+    const notificationDelete = () => {
+        notificationTextDelete.classList.add("show");
+        notificationTextDelete.animate([{transform: 'translateY(75px)'}, {transform: 'translateY(0px)'}], 
+        {duration: 300});
+        setTimeout(function(){
+            notificationTextDelete.animate([{transform: 'translateY(0px)'}, {transform: 'translateY(75px)'}], 
+            {duration: 300});
+        }, 1000);
+        setTimeout(function(){
+            notificationTextDelete.classList.remove("show");
+        }, 1300); 
     };
 
     let iconShopCounter = document.getElementById("icon-shop-count");
@@ -144,6 +160,11 @@ window.addEventListener('load', function() {
     
     iconShopCounter.innerHTML = count;
     
+    let searchIcon = document.getElementById("search-icon");
+    let searchInput = document.getElementById("search-input");
+    let searchWord = searchInput.value;
+
+
     function addingToOrder(list){
 
         for(let i = 0; i < list.length; i++){
@@ -159,23 +180,36 @@ window.addEventListener('load', function() {
                         notificationTextWarning.innerHTML = `
                         <p><i class="fas fa-exclamation"></i> Se agrego 1 unidad más de ${order[indexOrder].nombre}`;
                         notificationWarning();
+                        document.getElementById(`item-add-icon${list[i].type}${i}`).classList.add("item-add-icon-active");
+                        document.getElementById(`item-${list[i].type}${i}`).classList.add("menu-item-active");
+                        document.getElementById(`img-${list[i].type}${i}`).classList.add("img-item-active");
+                        setTimeout(function(){
+                            document.getElementById(`item-add-icon${list[i].type}${i}`).classList.remove("item-add-icon-active");
+                            document.getElementById(`item-${list[i].type}${i}`).classList.remove("menu-item-active");
+                            document.getElementById(`img-${list[i].type}${i}`).classList.remove("img-item-active");
+                        }, 400);
                     }else{
                         swal("Oops...", "No se pueden agregar mas unidades del producto", "warning");
                     }
                 }else{
-                    notification();
                     order.push(list[i]);
                     count = order.length;
                     iconShopCounter.innerHTML = count;
+                    notification();
+                    document.getElementById(`item-add-icon${list[i].type}${i}`).classList.add("item-add-icon-active");
+                    document.getElementById(`item-${list[i].type}${i}`).classList.add("menu-item-active");
+                    document.getElementById(`img-${list[i].type}${i}`).classList.add("img-item-active");
+                    setTimeout(function(){
+                        document.getElementById(`item-add-icon${list[i].type}${i}`).classList.remove("item-add-icon-active");
+                        document.getElementById(`item-${list[i].type}${i}`).classList.remove("menu-item-active");
+                        document.getElementById(`img-${list[i].type}${i}`).classList.remove("img-item-active");
+                    }, 400);
                 };
- 
+            
             });
         };
     };
 
-    let searchIcon = document.getElementById("search-icon");
-    let searchInput = document.getElementById("search-input");
-    let searchWord = searchInput.value;
 
     const removeInputAnimation = () => {
         searchInput.classList.remove("input-animation-in");
@@ -258,30 +292,43 @@ window.addEventListener('load', function() {
         btnSalty.classList.add("btn-salty-active");
     });
 
-    
+
     let searchResult;
-    
+
     searchIcon.addEventListener('click', () => {
-        removeButtonStyle();
         document.getElementById("search-input").value = "";
+        removeButtonStyle();
+        showLists(emptyList, "menu");
+        addingToOrder(emptyList);
+        document.getElementById('greeting').classList.add("hide");
+        document.getElementById("search-result-list").classList.remove("show");
+        document.getElementById("no-search-result").classList.add("show");
+        document.getElementById("header").style.display = "none";
+        document.getElementById("no-search-result").innerHTML = `
+            <p class="search-result box-notification">Busca en nuestro Menú </p>
+        `;
+        document.getElementById("no-order").classList.remove("show");
         if (searchInput.style.display === "none") {
             addInputAnimation();
-            searchInput.focus(); 
+            searchInput.focus();
         } else {
             removeInputAnimation();
+            document.getElementById("header").style.display = "grid";
+            document.getElementById("no-order").classList.add("show");
+            document.getElementById("no-search-result").classList.remove("show");
         }
     });
 
     
     searchInput.addEventListener('input', ()=>{
+        
         searchWord = searchInput.value;
         
         searchResult = allProducts.filter((allProducts) => allProducts.nombre.toLowerCase().includes(searchWord.toLowerCase().trim()));
 
-        document.getElementById('greeting').classList.add("hide");
         if(document.getElementById("search-input").value == ""){
             document.getElementById("no-search-result").innerHTML = `
-            <p class="search-result box-notification">Elige algo de nuestro Menú <i class="fas fa-hand-point-up"></i></p>
+            <p class="search-result box-notification">Busca en nuestro Menú </p>
                 `;
             document.getElementById("no-order").classList.remove("show");
             document.getElementById("search-result-list").classList.remove("show");
@@ -319,13 +366,23 @@ window.addEventListener('load', function() {
             for (let i = 0; i < order.length; i++){
                 
                 document.getElementById(`cancel${i}`).addEventListener('click', ()=>{
-                    
-                    order.splice(i, 1);
+                    if(count == 1){
+                        order.splice(i, 1);
+                        count--;
+                        iconShopCounter.innerHTML = count;
+                        createOrder();
+                    }else{
+                        notificationTextDelete.innerHTML = `
+                        <p><i class="far fa-times-circle"></i> Eliminaste ${order[i].nombre} del pedido`;
+                        notificationDelete();
     
-                    count--;
-                    iconShopCounter.innerHTML = count;
+                        order.splice(i, 1);
+                        count--;
+                        iconShopCounter.innerHTML = count;
+                        
+                        createOrder();
+                    }
                     
-                    createOrder();
                 });
             };
         }else{
@@ -416,7 +473,7 @@ window.addEventListener('load', function() {
         }
         
         document.getElementById("order-whatsapp").innerHTML = `
-        <a class="order-btn wapp" href="https://api.whatsapp.com/send?phone=5491163501252&text=*¡Hola Coffee Shop!* Me gustaría pedir: ${orderWhatsapp} Total: $ ${total+80}. Gracias" target="_blank"><i class="fab fa-whatsapp"></i> Enviar pedido por Whatsapp</a>
+        <a class="order-btn wapp" href="https://api.whatsapp.com/send?phone=5491163501252&text=*¡Hola Coffee Shop!* Me gustaría pedir: ${orderWhatsapp} Total: $ ${total+80}. Gracias" target="_blank"><i class="fab fa-whatsapp"></i> Enviar por Whatsapp</a>
         `;
 
         deleteOrder();
@@ -455,7 +512,9 @@ window.addEventListener('load', function() {
             document.getElementById("no-order").classList.remove("show");
             document.getElementById("order-section").style.display = "block";
             document.getElementById("search-result-list").classList.remove("show");
-            document.getElementById("header").style.display = "grid";        
+            document.getElementById("header").style.display = "grid";
+
+            document.getElementById("search-input").value = "";      
             createOrder();
         };
     });
