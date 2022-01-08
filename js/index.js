@@ -325,28 +325,24 @@ window.addEventListener('load', function() {
         searchWord = searchInput.value;
         
         searchResult = allProducts.filter((allProducts) => allProducts.nombre.toLowerCase().includes(searchWord.toLowerCase().trim()));
-
+        
+        document.getElementById("menu").classList.remove("show");
+        document.getElementById("header").style.display = "none";
         if(document.getElementById("search-input").value == ""){
             document.getElementById("no-search-result").innerHTML = `
             <p class="search-result box-notification">Busca en nuestro Menú </p>
                 `;
             document.getElementById("no-order").classList.remove("show");
             document.getElementById("search-result-list").classList.remove("show");
-            document.getElementById("menu").classList.remove("show");
-            document.getElementById("header").style.display = "none";
         }else{
             if(searchResult.length == 0){
-                document.getElementById("header").style.display = "none";
                 document.getElementById("search-result-list").classList.remove("show");
-                document.getElementById("menu").classList.remove("show");
                 document.getElementById("no-search-result").classList.add("show");
                 document.getElementById("no-search-result").innerHTML = `
                 <p class="search-result box-notification">No se encontraron resultados a tu búsqueda <i class="far fa-sad-cry"></i></p>
                 `;
             }else{
                 document.getElementById("search-result-list").classList.add("show");
-                document.getElementById("menu").classList.remove("show");
-                document.getElementById("header").style.display = "none";
                 document.getElementById("no-search-result").classList.add("show");
                 document.getElementById("no-search-result").innerHTML = `
                 <p class="search-result-list-text box-notification">Resultados de tu búsqueda: </p>
@@ -372,20 +368,27 @@ window.addEventListener('load', function() {
                         iconShopCounter.innerHTML = count;
                         createOrder();
                     }else{
-                        notificationTextDelete.innerHTML = `
-                        <p><i class="far fa-times-circle"></i> Eliminaste ${order[i].nombre} del pedido`;
-                        notificationDelete();
-    
-                        order.splice(i, 1);
-                        count--;
-                        iconShopCounter.innerHTML = count;
-                        
-                        createOrder();
+                        document.getElementById(`order-text${i}`).style.backgroundColor = "rgb(247,135,138)";
+                        document.getElementById(`order-text${i}`).style.color = "rgb(247,135,138)";
+                        document.getElementById(`plus${i}`).style.color = "rgb(247,135,138)";
+                        document.getElementById(`less${i}`).style.color = "rgb(247,135,138)";
+                        document.getElementById(`order-text${i}`).animate([{transform: 'translateX(0px)'}, {transform: 'translateX(830px)'}], 
+                        {duration: 500});
+                        setTimeout(function(){
+                            notificationTextDelete.innerHTML = `
+                            <p><i class="far fa-times-circle"></i> Eliminaste ${order[i].nombre} del pedido`;
+                            notificationDelete();
+                            order.splice(i, 1);
+                            count--;
+                            iconShopCounter.innerHTML = count;
+                            createOrder();
+                        }, 500);
                     }
                     
                 });
             };
         }else{
+            document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
             document.getElementById("order-section").style.display = "none";
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
             document.getElementById("no-order").classList.add("show");
@@ -439,7 +442,7 @@ window.addEventListener('load', function() {
         for(let i = 0; i < order.length; i++){
             let price = order[i].precio * order[i].cantidad;
             orderList += `
-                <div class="order-text" id="order-text">
+                <div class="order-text" id="order-text${i}">
                     <p class="order-text-cantidad">
                         <span id="plus${i}" class="quantity-icon"><i class="fas fa-caret-up"></i></span> 
                         <span class="quantity"> ${order[i].cantidad} </span>
@@ -486,6 +489,7 @@ window.addEventListener('load', function() {
             order = [];
             count = 0;
             iconShopCounter.innerHTML = count;
+            document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
             document.getElementById("order-section").style.display = "none";
@@ -501,19 +505,20 @@ window.addEventListener('load', function() {
         document.getElementById("no-search-result").classList.remove("show");
         document.getElementById("menu").classList.remove("show");
         removeButtonStyle();
+        document.getElementById("header-text").style.color = "rgb(255, 255, 255)";
         if(count == 0){
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
+            document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
             document.getElementById("no-order").classList.add("show");
             document.getElementById('greeting').classList.add("hide");
             document.getElementById("header").style.display = "grid";
         }else{
             document.getElementById("header-icon").style.backgroundImage = "url('../img/bg.png')";
-            document.getElementById("header-text").style.color = "rgb(255, 255, 255)";
+            
             document.getElementById("no-order").classList.remove("show");
             document.getElementById("order-section").style.display = "block";
             document.getElementById("search-result-list").classList.remove("show");
             document.getElementById("header").style.display = "grid";
-
             document.getElementById("search-input").value = "";      
             createOrder();
         };
