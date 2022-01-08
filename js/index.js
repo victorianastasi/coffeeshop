@@ -231,6 +231,7 @@ window.addEventListener('load', function() {
         showLists(coffeeList, "menu");
         addingToOrder(coffeeList);
         removeInputAnimation();
+        document.getElementById("order-sent").classList.remove("show");
         document.getElementById("header").style.display = "grid";
         document.getElementById("search-result-list").classList.remove("show");
         document.getElementById("order-section").style.display = "none";
@@ -247,6 +248,7 @@ window.addEventListener('load', function() {
         showLists(juiceList, "menu");
         addingToOrder(juiceList);
         removeInputAnimation();
+        document.getElementById("order-sent").classList.remove("show");
         document.getElementById("header").style.display = "grid";
         document.getElementById("search-result-list").classList.remove("show");
         document.getElementById("order-section").style.display = "none";
@@ -263,6 +265,7 @@ window.addEventListener('load', function() {
         showLists(sweetList, "menu");
         addingToOrder(sweetList);
         removeInputAnimation();
+        document.getElementById("order-sent").classList.remove("show");
         document.getElementById("header").style.display = "grid";
         document.getElementById("search-result-list").classList.remove("show");
         document.getElementById("order-section").style.display = "none";
@@ -279,6 +282,7 @@ window.addEventListener('load', function() {
         showLists(saltyList, "menu");
         addingToOrder(saltyList);
         removeInputAnimation();
+        document.getElementById("order-sent").classList.remove("show");
         document.getElementById("header").style.display = "grid";
         document.getElementById("search-result-list").classList.remove("show");
         document.getElementById("order-section").style.display = "none";
@@ -308,6 +312,7 @@ window.addEventListener('load', function() {
             <p class="search-result box-notification">Busca en nuestro Menú </p>
         `;
         document.getElementById("no-order").classList.remove("show");
+        document.getElementById("order-sent").classList.remove("show");
         if (searchInput.style.display === "none") {
             addInputAnimation();
             searchInput.focus();
@@ -476,12 +481,29 @@ window.addEventListener('load', function() {
         }
         
         document.getElementById("order-whatsapp").innerHTML = `
-        <a class="order-btn wapp" href="https://api.whatsapp.com/send?phone=5491163501252&text=*¡Hola Coffee Shop!* Me gustaría pedir: ${orderWhatsapp} Total: $ ${total+80}. Gracias" target="_blank"><i class="fab fa-whatsapp"></i> Enviar por Whatsapp</a>
+        <a class="order-btn wapp" id="wapp-order" href="https://api.whatsapp.com/send?phone=5491163501252&text=*¡Hola Coffee Shop!* Me gustaría pedir: ${orderWhatsapp} Total: $ ${total+80}. Gracias" target="_blank"><i class="fab fa-whatsapp"></i> Enviar por Whatsapp</a>
         `;
 
         deleteOrder();
+
+        orderSent()
     };
 
+    function orderSent(){
+        document.getElementById("wapp-order").addEventListener('click', ()=>{
+            order = [];
+            count = 0;
+            iconShopCounter.innerHTML = count;
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            document.getElementById("order-section").style.display = "none";
+            document.getElementById("order-sent").classList.add("show");
+            document.getElementById("order-sent").innerHTML = `
+            <p class="box-notification"> Tu pedido fue enviado, en breve nos comunicaremos por Whatsapp <i class="far fa-smile-beam smile-icon"></i></p>
+            `;
+
+        });
+    };
 
     function deleteOrder(){
         document.getElementById("order-delete").innerHTML = `<p class="order-btn delete"><i class="fas fa-times-circle"></i> Borrar el pedido </p>`;
@@ -506,6 +528,7 @@ window.addEventListener('load', function() {
         document.getElementById("menu").classList.remove("show");
         removeButtonStyle();
         document.getElementById("header-text").style.color = "rgb(255, 255, 255)";
+        document.getElementById("order-sent").classList.remove("show");
         if(count == 0){
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
             document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
