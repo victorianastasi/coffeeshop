@@ -42,12 +42,12 @@ window.addEventListener('load', function() {
     ];
     let sweetList = [
         {nombre: 'Cheesecake', imagen: '../img/cheesecake.png', tacc: '', vegan: '', precio: 280, cantidad: 1, type: 'sweet-menu'},
-        {nombre: 'Cheesecake de arándanos', imagen: '../img/cheesecakeblue.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 280, cantidad: 1, type: 'juice-menu'},
+        {nombre: 'Cheesecake de arándanos', imagen: '../img/cheesecakeblue.png', tacc: '', vegan: '', precio: 280, cantidad: 1, type: 'juice-menu'},
         {nombre: 'Chocotorta', imagen: '../img/chocotorta.png', tacc: '', vegan: '', precio: 250, cantidad: 1, type: 'juice-menu'},
         {nombre: 'Apple Pie', imagen: '../img/apple.png', tacc: '', vegan: '', precio: 230, cantidad: 1, type: 'juice-menu'},
         {nombre: 'Cupcake', imagen: '../img/cupcakes.png', tacc: '', vegan: '', precio: 180, cantidad: 1, type: 'juice-menu'},
         {nombre: 'Donuts', imagen: '../img/donuts.png', tacc: '', vegan: '', precio: 180, cantidad: 1, type: 'juice-menu'},
-        {nombre: 'Cookies', imagen: '../img/cookies.png', tacc: '', vegan: '', precio: 220, cantidad: 1, type: 'juice-menu'},
+        {nombre: 'Cookies', imagen: '../img/cookies.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '', precio: 220, cantidad: 1, type: 'juice-menu'},
         {nombre: 'Hotcakes', imagen: '../img/hotcakes.png', tacc: '<img class="img-icon" src="./img/iconTacc.png" alt="Sin T.A.C.C.">', vegan: '<i class="fas fa-seedling icon-vegan"></i>', precio: 210, cantidad: 1, type: 'juice-menu'},
         {nombre: 'Medialunas', imagen: '../img/medialunas.png', tacc: '', vegan: '', precio: 150, cantidad: 1, type: 'juice-menu'},
         {nombre: 'Tostadas con mermelada y queso blanco', imagen: '../img/toast.png', tacc: '', vegan: '', precio: 180, cantidad: 1, type: 'juice-menu'},
