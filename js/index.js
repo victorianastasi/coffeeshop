@@ -142,19 +142,19 @@ window.addEventListener('load', function() {
             <div class="menu-items-box">
                 <div class="menu-items" id="item-${list[i].type}${i}">
                     <div class="item-img">
-                        <img src="${list[i].imagen}" alt="${list[i].nombre}" id="img-${list[i].type}${i}">
+                        <img src="${list[i].imagen}" alt="${list[i].nombre}">
                     </div>
                     <div class="item-text">
                         <p>${list[i].nombre}</p>
                         <p>$ ${list[i].precio}</p>
                         <p>${list[i].vegan} ${list[i].tacc} </p>
                     </div>
-                    <p class="list-quantity" id="list-quantity${i}">
+                    <div class="list-quantity" id="list-quantity${i}">
                         <span id="less-list${i}" class="plus-list list-quantity-icon"><i class="fas fa-minus"></i></span>
                         <span class="list-quantity-number" id="quantity-list${i}"> ${list[i].cantidad} </span>
                         <span id="plus-list${i}" class="plus-list list-quantity-icon"><i class="fas fa-plus"></i></span> 
-                    </p>
-                    <div class="item-add" id="${list[i].type}${i}"><i class="fas fa-plus item-add-icon" id ="item-add-icon${list[i].type}${i}"></i></div>
+                    </div>
+                    <div class="item-add" id="${list[i].type}${i}"><i class="fas fa-plus item-add-icon"></i></div>
                     
                 </div>
                 <p class="quantity-notification" id="quantity-notification${i}"></p>
@@ -392,7 +392,6 @@ window.addEventListener('load', function() {
             removeInputAnimation();
             document.getElementById("header").style.display = "grid";
             document.getElementById("icon-header").innerHTML = `<i class="fas fa-coffee header-icon" id="header-icon"></i>`;
-            document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
             document.getElementById("header-text").style.color = "rgb(245, 245, 245)";
             document.getElementById("no-order").classList.add("show");
             document.getElementById("no-search-result").classList.remove("show");
@@ -469,7 +468,7 @@ window.addEventListener('load', function() {
                 });
             };
         }else{
-            document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
+            document.getElementById("icon-header").innerHTML = `<i class="fas fa-coffee header-icon" id="header-icon"></i>`;
             document.getElementById("order-section").style.display = "none";
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
             document.getElementById("no-order").classList.add("show");
@@ -600,7 +599,7 @@ window.addEventListener('load', function() {
             orderItems = [];
             count = 0;
             iconShopCounter.innerHTML = count;
-            document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
+            document.getElementById("icon-header").innerHTML = `<i class="fas fa-coffee header-icon" id="header-icon"></i>`;
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
             document.getElementById("order-section").style.display = "none";
@@ -621,7 +620,6 @@ window.addEventListener('load', function() {
         if(count == 0){
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
             document.getElementById("icon-header").innerHTML = `<i class="fas fa-coffee header-icon" id="header-icon"></i>`;
-            document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
             document.getElementById("no-order").classList.add("show");
             document.getElementById('greeting').classList.add("hide");
             document.getElementById("header").style.display = "grid";
