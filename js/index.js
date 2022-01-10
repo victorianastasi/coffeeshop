@@ -69,9 +69,8 @@ window.addEventListener('load', function() {
     const greeting = () => {
         this.document.getElementById('greeting').innerHTML =
         `
-            <h2>Bienvenidos a Coffee Shop!!</h2>
-            <p>Conocé nuestro menú</p>
-            <p><i class="fas fa-angle-double-down greeting-arrow"></i></p>
+            <h2>Bienvenidos a Coffee Shop</h2>
+            <p>Conocé nuestro menú!</p>
         `;
     };
 
@@ -89,56 +88,23 @@ window.addEventListener('load', function() {
         btnSalty.classList.remove("btn-salty-active");
     };
 
-    function showLists (list, id){
-        document.getElementById("order-section").style.display = "none";
-        let acu =  ``;
-        for(let i = 0; i < list.length; i++){
-            acu += `
-            <div class="menu-items" id="item-${list[i].type}${i}">
-                <div class="item-img">
-                    <img src="${list[i].imagen}" alt="${list[i].nombre}" id="img-${list[i].type}${i}">
-                </div>
-                <div class="item-text">
-                    <p>${list[i].nombre}</p>
-                    <p>$ ${list[i].precio}</p>
-                    <p>${list[i].vegan} ${list[i].tacc}</p>
-                </div>
-                <div class="item-add" id="${list[i].type}${i}"><i class="fas fa-plus item-add-icon" id ="item-add-icon${list[i].type}${i}"></i></div>
-            </div>
-            `;
-        };
+    let notificationText = document.getElementById("notification");
+    let notificationTextWarningAdd = document.getElementById("notification-warning-add");
+    let notificationTextWarningMinus= document.getElementById("notification-warning-minus");
 
-        document.getElementById(id).innerHTML = acu;
-    };
-
-    const notificationText = document.getElementById("notification");
-
-    const notification = () => {
-        notificationText.classList.add("show");
-        notificationText.animate([{transform: 'translateX(330px)'}, {transform: 'translateX(0px)'}], 
+    const notification = (textId) => {
+        textId.classList.add("show");
+        textId.animate([{transform: 'translateX(330px)'}, {transform: 'translateX(0px)'}], 
         {duration: 300});
         setTimeout(function(){
-            notificationText.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(330px)'}], 
+            textId.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(330px)'}], 
             {duration: 300});
         }, 1800);
         setTimeout(function(){
-            notificationText.classList.remove("show");
+            textId.classList.remove("show");
         }, 2100); 
     };
 
-    let notificationTextWarning = document.getElementById("notification-warning");
-    const notificationWarning = () => {
-        notificationTextWarning.classList.add("show");
-        notificationTextWarning.animate([{transform: 'translateX(330px)'}, {transform: 'translateX(0px)'}], 
-        {duration: 300});
-        setTimeout(function(){
-            notificationTextWarning.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(330px)'}], 
-            {duration: 300});
-        }, 1800);
-        setTimeout(function(){
-            notificationTextWarning.classList.remove("show");
-        }, 2100); 
-    };
 
     let notificationTextDelete = document.getElementById("notification-delete");
     const notificationDelete = () => {
@@ -156,8 +122,9 @@ window.addEventListener('load', function() {
 
     let iconShopCounter = document.getElementById("icon-shop-count");
     let order = [];
-    let count = order.length;
+    let orderItems = [];
     
+    let count = order.length;
     iconShopCounter.innerHTML = count;
     
     let searchIcon = document.getElementById("search-icon");
@@ -165,47 +132,150 @@ window.addEventListener('load', function() {
     let searchWord = searchInput.value;
 
 
-    function addingToOrder(list){
-
+    function showLists (list, id){
+        document.getElementById("order-section").style.display = "none";
+        let acu =  ``;
         for(let i = 0; i < list.length; i++){
-            document.getElementById(`${list[i].type}${i}`).addEventListener('click', ()=>{
-                
-                let findProduct = order.find(order => order.nombre == list[i].nombre);
-                
-                let indexOrder = order.indexOf(findProduct);
-
-                if(findProduct != null){
-                    if(order[indexOrder].cantidad < 10){
-                        order[indexOrder].cantidad += 1;
-                        notificationTextWarning.innerHTML = `
-                        <p><i class="fas fa-exclamation"></i> Se agrego 1 unidad más de ${order[indexOrder].nombre}`;
-                        notificationWarning();
-                        document.getElementById(`item-add-icon${list[i].type}${i}`).classList.add("item-add-icon-active");
-                        document.getElementById(`item-${list[i].type}${i}`).classList.add("menu-item-active");
-                        document.getElementById(`img-${list[i].type}${i}`).classList.add("img-item-active");
-                        setTimeout(function(){
-                            document.getElementById(`item-add-icon${list[i].type}${i}`).classList.remove("item-add-icon-active");
-                            document.getElementById(`item-${list[i].type}${i}`).classList.remove("menu-item-active");
-                            document.getElementById(`img-${list[i].type}${i}`).classList.remove("img-item-active");
-                        }, 400);
-                    }else{
-                        swal("Oops...", "No se pueden agregar mas unidades del producto", "warning");
-                    }
-                }else{
-                    order.push(list[i]);
-                    count = order.length;
-                    iconShopCounter.innerHTML = count;
-                    notification();
-                    document.getElementById(`item-add-icon${list[i].type}${i}`).classList.add("item-add-icon-active");
-                    document.getElementById(`item-${list[i].type}${i}`).classList.add("menu-item-active");
-                    document.getElementById(`img-${list[i].type}${i}`).classList.add("img-item-active");
-                    setTimeout(function(){
-                        document.getElementById(`item-add-icon${list[i].type}${i}`).classList.remove("item-add-icon-active");
-                        document.getElementById(`item-${list[i].type}${i}`).classList.remove("menu-item-active");
-                        document.getElementById(`img-${list[i].type}${i}`).classList.remove("img-item-active");
-                    }, 400);
-                };
+            acu += `
+            <div class="menu-items-box">
+                <div class="menu-items" id="item-${list[i].type}${i}">
+                    <div class="item-img">
+                        <img src="${list[i].imagen}" alt="${list[i].nombre}" id="img-${list[i].type}${i}">
+                    </div>
+                    <div class="item-text">
+                        <p>${list[i].nombre}</p>
+                        <p>$ ${list[i].precio}</p>
+                        <p>${list[i].vegan} ${list[i].tacc} </p>
+                    </div>
+                    <p class="list-quantity" id="list-quantity${i}">
+                        <span id="less-list${i}" class="plus-list list-quantity-icon"><i class="fas fa-minus"></i></span>
+                        <span class="list-quantity-number" id="quantity-list${i}"> ${list[i].cantidad} </span>
+                        <span id="plus-list${i}" class="plus-list list-quantity-icon"><i class="fas fa-plus"></i></span> 
+                    </p>
+                    <div class="item-add" id="${list[i].type}${i}"><i class="fas fa-plus item-add-icon" id ="item-add-icon${list[i].type}${i}"></i></div>
+                    
+                </div>
+                <p class="quantity-notification" id="quantity-notification${i}"></p>
+            </div>
+            `;
             
+        };
+        
+        document.getElementById(id).innerHTML = acu;
+        
+        orderItems.forEach(item => {
+            let findOrderItem = list.find(list => list.nombre == item);
+            let indexFindOrderItem = list.indexOf(findOrderItem);
+
+            if(findOrderItem != null){
+                document.getElementById(`list-quantity${indexFindOrderItem}`).classList.add("list-quantity-active");
+                document.getElementById(`${list[indexFindOrderItem].type}${indexFindOrderItem}`).style.display = "none";
+                document.getElementById(`quantity-notification${indexFindOrderItem}`).style.display = "block";
+                document.getElementById(`item-${list[indexFindOrderItem].type}${indexFindOrderItem}`).classList.add("menu-item-added"); 
+
+                if(list[indexFindOrderItem].cantidad == 1){
+                    document.getElementById(`quantity-notification${indexFindOrderItem}`).innerHTML = `Hay ${list[indexFindOrderItem].cantidad} unidad en tu pedido`;
+                }else{
+                    document.getElementById(`quantity-notification${indexFindOrderItem}`).innerHTML = `Hay ${list[indexFindOrderItem].cantidad} unidades en tu pedido`;
+                }
+            };
+                 
+        });
+      
+        addingToOrder(list);
+
+        addList(list);
+
+        minusList(list);
+
+    };
+
+    const addList = (list) => {
+        for (let i = 0; i < list.length; i++){
+
+            document.getElementById(`plus-list${i}`).addEventListener('click', ()=>{
+                if (list[i].cantidad < 10){
+                    list[i].cantidad += 1;
+                    
+                    this.document.getElementById(`quantity-list${i}`).innerHTML = `${list[i].cantidad}`;
+                    this.document.getElementById(`quantity-notification${i}`).innerHTML = `Hay ${list[i].cantidad} unidades en tu pedido`;
+                    this.document.getElementById(`quantity-notification${i}`).style.display = "block";
+                    this.document.getElementById(`${list[i].type}${i}`).style.display = "none"; 
+
+
+                    let findItem = order.find(order => order.nombre == list[i].nombre);
+                    let indexItemOrder = order.indexOf(findItem);
+                    
+                    order[indexItemOrder].cantidad = list[i].cantidad;
+                                      
+                    notificationTextWarningAdd.innerHTML = `
+                    <p><i class="fas fa-exclamation"></i> Se agrego 1 unidad más de ${order[indexItemOrder].nombre}</p>`;
+                    notification(notificationTextWarningAdd);
+                    
+                }else{
+                    swal("Oops...", "No se pueden agregar mas unidades del producto", "warning");
+                };
+                
+            });
+        };
+    };
+
+    const minusList = (list) => {
+        for (let i = 0; i < list.length; i++){
+
+            document.getElementById(`less-list${i}`).addEventListener('click', ()=>{
+                if (list[i].cantidad > 1){
+                    list[i].cantidad -= 1;
+                    
+                    this.document.getElementById(`quantity-list${i}`).innerHTML = `${list[i].cantidad}`;
+                    this.document.getElementById(`quantity-notification${i}`).style.display = "block";
+                    this.document.getElementById(`${list[i].type}${i}`).style.display = "none"; 
+                    if(list[i].cantidad >= 2){
+                        this.document.getElementById(`quantity-notification${i}`).innerHTML = `Hay ${list[i].cantidad} unidades en tu pedido`;
+                    }else{
+                        this.document.getElementById(`quantity-notification${i}`).innerHTML = `Hay ${list[i].cantidad} unidad en tu pedido`;
+                    }
+
+                    let findItem = order.find(order => order.nombre == list[i].nombre);
+                    let indexItemOrder = order.indexOf(findItem);
+                    
+
+                    order[indexItemOrder].cantidad = list[i].cantidad;
+                                      
+                    notificationTextWarningMinus.innerHTML = `
+                    <p><i class="far fa-times-circle"></i> Se eliminó 1 unidad de ${order[indexItemOrder].nombre}</p>`;
+                    notification(notificationTextWarningMinus);
+                    
+                }else{
+                    swal("Oops...", "La cantidad no puede ser menor a 1", "warning");
+                };
+                
+            });
+        };
+    };
+
+
+    const addingToOrder = (list) => {
+        
+        for(let i = 0; i < list.length; i++){
+        
+            document.getElementById(`${list[i].type}${i}`).addEventListener('click', ()=>{
+
+                document.getElementById(`list-quantity${i}`).classList.add("list-quantity-active");
+                document.getElementById(`${list[i].type}${i}`).style.display = "none";
+                document.getElementById(`quantity-notification${i}`).innerHTML = `Hay 1 unidad en tu pedido`;
+                document.getElementById(`quantity-notification${i}`).style.display = "block";
+                document.getElementById(`item-${list[i].type}${i}`).classList.add("menu-item-added");
+
+                order.push(list[i]);
+                orderItems.push(list[i].nombre);
+                
+                count = order.length;
+                iconShopCounter.innerHTML = count;
+                
+                notificationText.innerHTML = `
+                <p><i class="fas fa-check"></i> Producto añadido a tu pedido</p>`;
+                notification(notificationText);
             });
         };
     };
@@ -229,7 +299,6 @@ window.addEventListener('load', function() {
 
     btnCoffee.addEventListener('click', () =>{
         showLists(coffeeList, "menu");
-        addingToOrder(coffeeList);
         removeInputAnimation();
         document.getElementById("order-sent").classList.remove("show");
         document.getElementById("header").style.display = "grid";
@@ -246,7 +315,6 @@ window.addEventListener('load', function() {
     });
     btnJuice.addEventListener('click', () =>{
         showLists(juiceList, "menu");
-        addingToOrder(juiceList);
         removeInputAnimation();
         document.getElementById("order-sent").classList.remove("show");
         document.getElementById("header").style.display = "grid";
@@ -263,7 +331,6 @@ window.addEventListener('load', function() {
     });
     btnSweet.addEventListener('click', () =>{
         showLists(sweetList, "menu");
-        addingToOrder(sweetList);
         removeInputAnimation();
         document.getElementById("order-sent").classList.remove("show");
         document.getElementById("header").style.display = "grid";
@@ -280,7 +347,6 @@ window.addEventListener('load', function() {
     });
     btnSalty.addEventListener('click', () =>{
         showLists(saltyList, "menu");
-        addingToOrder(saltyList);
         removeInputAnimation();
         document.getElementById("order-sent").classList.remove("show");
         document.getElementById("header").style.display = "grid";
@@ -309,8 +375,7 @@ window.addEventListener('load', function() {
         document.getElementById("no-search-result").classList.add("show");
         document.getElementById("header").style.display = "none";
         document.getElementById("no-search-result").innerHTML = `
-            <p class="search-result box-notification">Busca en nuestro Menú </p>
-        `;
+            <p class="search-result box-notification">Busca en nuestro Menú </p>`;
         document.getElementById("no-order").classList.remove("show");
         document.getElementById("order-sent").classList.remove("show");
         if (searchInput.style.display === "none") {
@@ -344,18 +409,15 @@ window.addEventListener('load', function() {
                 document.getElementById("search-result-list").classList.remove("show");
                 document.getElementById("no-search-result").classList.add("show");
                 document.getElementById("no-search-result").innerHTML = `
-                <p class="search-result box-notification">No se encontraron resultados a tu búsqueda <i class="far fa-sad-cry"></i></p>
-                `;
+                <p class="search-result box-notification">No se encontraron resultados a tu búsqueda <i class="far fa-sad-cry"></i></p>`;
             }else{
                 document.getElementById("search-result-list").classList.add("show");
                 document.getElementById("no-search-result").classList.add("show");
                 document.getElementById("no-search-result").innerHTML = `
-                <p class="search-result-list-text box-notification">Resultados de tu búsqueda: </p>
-                `;
+                <p class="search-result-list-text box-notification">Resultados de tu búsqueda: </p> `;
                 document.getElementById("no-order").classList.remove("show");
 
                 showLists(searchResult, "search-result-list");
-                addingToOrder(searchResult);
             };
         };
         
@@ -368,7 +430,9 @@ window.addEventListener('load', function() {
                 
                 document.getElementById(`cancel${i}`).addEventListener('click', ()=>{
                     if(count == 1){
+                        order[i].cantidad = 1;
                         order.splice(i, 1);
+                        orderItems = [];
                         count--;
                         iconShopCounter.innerHTML = count;
                         createOrder();
@@ -383,7 +447,9 @@ window.addEventListener('load', function() {
                             notificationTextDelete.innerHTML = `
                             <p><i class="far fa-times-circle"></i> Eliminaste ${order[i].nombre} del pedido`;
                             notificationDelete();
+                            order[i].cantidad = 1;
                             order.splice(i, 1);
+                            orderItems.splice(i, 1);
                             count--;
                             iconShopCounter.innerHTML = count;
                             createOrder();
@@ -406,7 +472,10 @@ window.addEventListener('load', function() {
             document.getElementById(`plus${i}`).addEventListener('click', ()=>{
                 if (order[i].cantidad < 10){
                     order[i].cantidad += 1;
-                    
+                    notificationTextWarningAdd.innerHTML = `
+                    <p><i class="fas fa-exclamation"></i> Se agrego 1 unidad más de ${order[i].nombre}</p>`;
+                    notification(notificationTextWarningAdd);
+
                     createOrder();
                 }else{
                     swal("Oops...", "No se pueden agregar mas unidades del producto", "warning");
@@ -415,13 +484,16 @@ window.addEventListener('load', function() {
             });
         };
     };
-
+    
     const minus = () => {
         for (let i = 0; i < order.length; i++){
             document.getElementById(`less${i}`).addEventListener('click', ()=>{
                 if (order[i].cantidad > 1){
                     order[i].cantidad -= 1;
-                    
+                    notificationTextWarningMinus.innerHTML = `
+                    <p><i class="far fa-times-circle"></i> Se eliminó 1 unidad de ${order[i].nombre}</p>`;
+                    notification(notificationTextWarningMinus);
+
                     createOrder();
                 }else{
                     swal("Oops...", "La cantidad no puede ser menor a 1", "warning");
@@ -491,7 +563,11 @@ window.addEventListener('load', function() {
 
     function orderSent(){
         document.getElementById("wapp-order").addEventListener('click', ()=>{
+            for(let i = 0; i < order.length; i++){
+                order[i].cantidad = 1;
+            };
             order = [];
+            orderItems = [];
             count = 0;
             iconShopCounter.innerHTML = count;
             document.body.scrollTop = 0;
@@ -501,14 +577,17 @@ window.addEventListener('load', function() {
             document.getElementById("order-sent").innerHTML = `
             <p class="box-notification"> Tu pedido fue enviado, en breve nos comunicaremos por Whatsapp <i class="far fa-smile-beam smile-icon"></i></p>
             `;
-
         });
     };
 
     function deleteOrder(){
         document.getElementById("order-delete").innerHTML = `<p class="order-btn delete"><i class="fas fa-times-circle"></i> Borrar el pedido </p>`;
         document.getElementById("order-delete").addEventListener('click', ()=>{
+            for(let i = 0; i < order.length; i++){
+                order[i].cantidad = 1;
+            };
             order = [];
+            orderItems = [];
             count = 0;
             iconShopCounter.innerHTML = count;
             document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
@@ -537,7 +616,6 @@ window.addEventListener('load', function() {
             document.getElementById("header").style.display = "grid";
         }else{
             document.getElementById("header-icon").style.backgroundImage = "url('../img/bg.png')";
-            
             document.getElementById("no-order").classList.remove("show");
             document.getElementById("order-section").style.display = "block";
             document.getElementById("search-result-list").classList.remove("show");

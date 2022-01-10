@@ -111,6 +111,11 @@ header{
     place-content: center;
     padding-bottom: 2rem;
 }
+@keyframes animation-icon {
+    100%{
+        background-size: 150%;
+    }
+}
 .header i{
     font-size: 8rem;
     color: transparent;
@@ -121,26 +126,17 @@ header{
     background-position: center;
     animation: animation-icon 2.5s infinite alternate linear;
 }
-@keyframes animation-icon {
-    100%{
-        background-size: 150%;
-    }
-}
 .greeting{
-    margin: 2rem 0 0 0;
+    margin: 3rem 0 2rem 0;
     text-align: center;
 }
-.greeting p{
-    margin: 0;
-}
-.greeting i{
-    font-size: 3.5rem;
-    padding-top: 1rem;
+.greeting p, .greeting h2{
     color: transparent;
-    background-image: linear-gradient(to bottom, rgba(191, 171, 236, 0.9), rgba(250, 223, 242, 0.9));
+    background-image: linear-gradient(to right, rgb(153, 121, 228), rgb(202, 118, 178)); 
     background-clip: text;
     -webkit-background-clip: text;
-    background-size: 500%;
+    background-size: 100%;
+    font-weight: 500;
 }
 .footer-text-small{
     text-align: center;
@@ -196,22 +192,59 @@ header{
 .btn-salty-active:hover{
     color: rgb(39, 40, 46);
 }
-.menu-items{
+.menu-items-box{
     background-color: white;
+    margin: 1.5rem 0;
+    box-shadow: 5px 5px 5px rgb(0,0,0,0.15);
+}
+.menu-items{
+    height: 100px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
-    margin: 1.5rem 0;
-    box-shadow: 5px 5px 5px rgb(0,0,0,0.15);
 }
 .menu-item-active{
     background-color: rgba(39, 40, 46, 0.9);
     color: rgb(245, 245, 245);
 }
+.menu-item-added{
+    background-color: rgba(39, 85, 83, 0.25);
+}
 .menu-items p{
     margin-bottom: 0.25rem;
+}
+.quantity-notification{
+    display: none;
+    font-size: 0.9rem;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: rgba(39, 40, 46, 0.9);
+    color: rgb(245, 245, 245);
+}
+.list-quantity{
+    display: none;
+    text-align: center;
+    flex-basis: 25%;
+    background-color: rgba(245, 245, 245, 0.9);
+    border-radius: 5px;
+    margin-right: 0.25rem;
+}
+.list-quantity-active{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-quantity-number{
+    font-weight: 600;
+}
+.list-quantity-icon{
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px rgb(184, 184, 184);
+    background-color: rgba(39, 40, 46, 0.85);
+    color: rgb(245, 245, 245);
 }
 .item-img{
     flex-basis: 27%;
@@ -227,7 +260,7 @@ header{
 }
 .item-text{
     flex-basis: 57%;
-    padding-left: 1rem;
+    padding-left: 0.85rem;
 }
 .item-text p:nth-child(1){
     font-family: 'Ubuntu', sans-serif;
@@ -287,6 +320,7 @@ header{
     text-align: left;
 }
 .order-text-cantidad{
+    display: none;
     flex-basis: 15%;
     text-align: center;
     display: flex;
@@ -302,6 +336,7 @@ header{
     line-height: 4px;
     color: rgb(87, 90, 95);
 }
+
 .order-text-price{
     flex-basis: 20%;
     text-align: center;
@@ -336,8 +371,11 @@ header{
     font-size: 1.7rem;
     padding-right: 0.75rem;
 }
-.notification-warning p{
+.notification-warning-add p{
     color: rgb(255,193,133);
+}
+.notification-warning-minus p{
+    color: rgb(253, 186, 189);
 }
 .notification-delete{
     width: 100%;
