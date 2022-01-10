@@ -76,6 +76,8 @@ window.addEventListener('load', function() {
 
     greeting();
 
+    document.getElementById("icon-header").innerHTML = `<i class="fas fa-coffee header-icon" id="header-icon"></i>`;
+
     let btnCoffee = document.getElementById("coffee-btn");
     let btnJuice = document.getElementById("juice-btn");
     let btnSweet = document.getElementById("sweet-btn");
@@ -308,10 +310,12 @@ window.addEventListener('load', function() {
         document.getElementById("no-search-result").classList.remove("show");
         document.getElementById('greeting').classList.add("hide");
         document.getElementById("menu").classList.add("show");
-        document.getElementById("header-icon").style.backgroundImage = "url('../img/bg-coffee.png')";
         document.getElementById("header-text").style.color = "rgb(241, 237, 206)";
         removeButtonStyle();
         btnCoffee.classList.add("btn-coffee-active");
+
+        document.getElementById("icon-header").innerHTML = `<i class="fas fa-mug-hot header-icon" id="coffee-icon"></i>`;
+        document.getElementById("coffee-icon").style.backgroundImage = "url('../img/bg-coffee.png')";
     });
     btnJuice.addEventListener('click', () =>{
         showLists(juiceList, "menu");
@@ -324,10 +328,11 @@ window.addEventListener('load', function() {
         document.getElementById("no-search-result").classList.remove("show");
         document.getElementById('greeting').classList.add("hide");
         document.getElementById("menu").classList.add("show");
-        document.getElementById("header-icon").style.backgroundImage = "url('../img/bg-juice.png')";
         document.getElementById("header-text").style.color = "rgb(245, 245, 196)";
         removeButtonStyle();
         btnJuice.classList.add("btn-juice-active");
+        document.getElementById("icon-header").innerHTML = `<i class="fas fa-wine-glass header-icon" id="juice-icon"></i>`;
+        document.getElementById("juice-icon").style.backgroundImage = "url('../img/bg-juice.png')";
     });
     btnSweet.addEventListener('click', () =>{
         showLists(sweetList, "menu");
@@ -340,10 +345,11 @@ window.addEventListener('load', function() {
         document.getElementById("no-search-result").classList.remove("show");
         document.getElementById('greeting').classList.add("hide");
         document.getElementById("menu").classList.add("show");
-        document.getElementById("header-icon").style.backgroundImage = "url('../img/bg-sweet.png')";
         document.getElementById("header-text").style.color = "rgb(239, 190, 192)";
         removeButtonStyle();
         btnSweet.classList.add("btn-sweet-active");
+        document.getElementById("icon-header").innerHTML = `<i class="fas fa-cheese header-icon" id="sweet-icon"></i>`;
+        document.getElementById("sweet-icon").style.backgroundImage = "url('../img/bg-sweet.png')";
     });
     btnSalty.addEventListener('click', () =>{
         showLists(saltyList, "menu");
@@ -356,10 +362,11 @@ window.addEventListener('load', function() {
         document.getElementById("no-search-result").classList.remove("show");
         document.getElementById('greeting').classList.add("hide");
         document.getElementById("menu").classList.add("show");
-        document.getElementById("header-icon").style.backgroundImage = "url('../img/bg-salty.png')";
         document.getElementById("header-text").style.color = "rgb(193, 223, 192)";
         removeButtonStyle();
         btnSalty.classList.add("btn-salty-active");
+        document.getElementById("icon-header").innerHTML = `<i class="fas fa-bread-slice header-icon" id="salty-icon"></i>`;
+        document.getElementById("salty-icon").style.backgroundImage = "url('../img/bg-salty.png')";
     });
 
 
@@ -384,6 +391,9 @@ window.addEventListener('load', function() {
         } else {
             removeInputAnimation();
             document.getElementById("header").style.display = "grid";
+            document.getElementById("icon-header").innerHTML = `<i class="fas fa-coffee header-icon" id="header-icon"></i>`;
+            document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
+            document.getElementById("header-text").style.color = "rgb(245, 245, 245)";
             document.getElementById("no-order").classList.add("show");
             document.getElementById("no-search-result").classList.remove("show");
         }
@@ -610,12 +620,14 @@ window.addEventListener('load', function() {
         document.getElementById("order-sent").classList.remove("show");
         if(count == 0){
             swal("No hay nada en tu pedido", "Mirá nuestro Menú!", "error");
+            document.getElementById("icon-header").innerHTML = `<i class="fas fa-coffee header-icon" id="header-icon"></i>`;
             document.getElementById("header-icon").style.backgroundImage = "linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255))";
             document.getElementById("no-order").classList.add("show");
             document.getElementById('greeting').classList.add("hide");
             document.getElementById("header").style.display = "grid";
         }else{
-            document.getElementById("header-icon").style.backgroundImage = "url('../img/bg.png')";
+            document.getElementById("icon-header").innerHTML = `<i class="fas fa-tasks header-icon" id="checkout-icon"></i>`;
+            document.getElementById("checkout-icon").style.backgroundImage = "url('../img/bg.png')";
             document.getElementById("no-order").classList.remove("show");
             document.getElementById("order-section").style.display = "block";
             document.getElementById("search-result-list").classList.remove("show");

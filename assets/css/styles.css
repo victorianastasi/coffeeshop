@@ -116,7 +116,10 @@ header{
         background-size: 150%;
     }
 }
-.header i{
+.header h1{
+    padding-top: 0.75rem;
+}
+.header-icon{
     font-size: 8rem;
     color: transparent;
     background-image: linear-gradient(to right, rgb(168, 139, 235), rgb(248, 206, 236), rgb(255, 255, 255));
