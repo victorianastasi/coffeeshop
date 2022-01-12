@@ -312,10 +312,11 @@ window.addEventListener('load', function() {
         document.getElementById("menu").classList.add("show");
         document.getElementById("header-text").style.color = "rgb(241, 237, 206)";
         removeButtonStyle();
-        btnCoffee.classList.add("btn-coffee-active");
-
+        btnCoffee.classList.add("btn-coffee-active");  
         document.getElementById("icon-header").innerHTML = `<i class="fas fa-mug-hot header-icon" id="coffee-icon"></i>`;
         document.getElementById("coffee-icon").style.backgroundImage = "url('../img/bg-coffee.png')";
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     });
     btnJuice.addEventListener('click', () =>{
         showLists(juiceList, "menu");
@@ -333,6 +334,8 @@ window.addEventListener('load', function() {
         btnJuice.classList.add("btn-juice-active");
         document.getElementById("icon-header").innerHTML = `<i class="fas fa-wine-glass header-icon" id="juice-icon"></i>`;
         document.getElementById("juice-icon").style.backgroundImage = "url('../img/bg-juice.png')";
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     });
     btnSweet.addEventListener('click', () =>{
         showLists(sweetList, "menu");
@@ -350,6 +353,8 @@ window.addEventListener('load', function() {
         btnSweet.classList.add("btn-sweet-active");
         document.getElementById("icon-header").innerHTML = `<i class="fas fa-cheese header-icon" id="sweet-icon"></i>`;
         document.getElementById("sweet-icon").style.backgroundImage = "url('../img/bg-sweet.png')";
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     });
     btnSalty.addEventListener('click', () =>{
         showLists(saltyList, "menu");
@@ -367,6 +372,8 @@ window.addEventListener('load', function() {
         btnSalty.classList.add("btn-salty-active");
         document.getElementById("icon-header").innerHTML = `<i class="fas fa-bread-slice header-icon" id="salty-icon"></i>`;
         document.getElementById("salty-icon").style.backgroundImage = "url('../img/bg-salty.png')";
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     });
 
 
